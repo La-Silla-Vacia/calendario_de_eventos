@@ -484,9 +484,9 @@ class Calendar extends React.Component {
  };
 
  getDrilldownView = (date) => {
-   const { view, drilldownView, getDrilldownView } = this.props
+   const { view, drilldownView, getDrilldownView } = this.props;
 
-   if (!getDrilldownView) return drilldownView
+   if (!getDrilldownView) return drilldownView;
 
    return getDrilldownView(date, view, Object.keys(this.getViews()));
  };

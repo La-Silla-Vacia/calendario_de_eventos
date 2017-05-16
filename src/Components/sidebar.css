@@ -4,6 +4,7 @@
   background-color: var(--brand-color);
   width: 300px;
   padding: 2em;
+  margin-right:2em;
 }
 
 .changeViewButton {
@@ -12,8 +13,30 @@
   color: var(--brand-color--light);
   font-size: .8em;
   font-family: map(fonts, family-sans-especial);
+
+  &:first-child {
+    padding-left: 0;
+  }
 }
 
 .is_active {
   color: var(--color-highlight);
+}
+
+.btn_group {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.date {
+  margin-top: 1em;
+  font-size: 2.5em;
+  color: #fff;
+}
+
+.month {
+  text-transform: capitalize;
+  font-weight: lighter;
+  display: block;
+  color: var(--brand-color--light);
 }

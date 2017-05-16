@@ -21,11 +21,22 @@ class Toolbar extends React.Component {
   render() {
     let { messages, label, view } = this.props;
 
+    label = label.replace(/^\s*\w+/, `<span class="${s.month}">$&</span>`);
+
     messages = message(messages);
 
     return (
       <aside className={s.container}>
-        <span className='rbc-btn-group'>
+
+        <div className={s.btn_group}>
+        {
+          this.viewNamesGroup(messages)
+        }
+        </div>
+
+        <div className={s.date} dangerouslySetInnerHTML={{__html: label}} />
+
+        <span className={s.btn_group}>
           <button
             type='button'
             onClick={this.navigate.bind(null, navigate.TODAY)}
@@ -44,16 +55,6 @@ class Toolbar extends React.Component {
           >
             {messages.next}
           </button>
-        </span>
-
-        <span className='rbc-toolbar-label'>
-          { label }
-        </span>
-
-        <span className='rbc-btn-group'>
-        {
-          this.viewNamesGroup(messages)
-        }
         </span>
       </aside>
     );

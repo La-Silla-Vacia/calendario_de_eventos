@@ -1,0 +1,20 @@
+@import "../_variables.css";
+
+.item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 1em 0.2em;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 400;
+  font-size: 90%;
+  min-height: 0;
+}
+
+.item > a,
+.item > a:active,
+.item > a:visited {
+  color: var(--brand-color--light);
+  text-decoration: none;
+}

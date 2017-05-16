@@ -22,6 +22,8 @@ import { accessor as get } from './utils/accessors';
 
 import { inRange, sortEvents, segStyle } from './utils/eventLevels';
 
+import s from '../header.css';
+
 export default class TimeGrid extends Component {
 
   static propTypes = {
@@ -304,7 +306,7 @@ export default class TimeGrid extends Component {
         <div
           key={i}
           className={cn(
-            'rbc-header',
+            s.item,
             dates.isToday(date) && 'rbc-today',
           )}
           style={segStyle(1, this.slots)}

@@ -9,6 +9,26 @@ const data = require('../data/data.json');
 
 BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
 
+let formats = {
+  timeGutterFormat: 'HH:mm',
+  eventTimeRangeFormat: ({ start, end }, culture, local) =>
+  local.format(start, 'HH:mm', culture) + '-' +
+  local.format(end, 'HH:mm', culture),
+  dayFormat: 'dddd DD',
+
+  agendaTimeRangeFormat: ({ start, end }, culture, local) =>
+  local.format(start, 'HH:mm', culture) + '-' +
+  local.format(end, 'HH:mm', culture),
+  agendaDateFormat: 'MM-DD' + ' ' + '星期' + 'dd',
+
+  dayRangeHeaderFormat: ({ start, end }, culture, local) =>
+  local.format(start, 'MMMM DD', culture) + ' - ' +
+  local.format(end, 'DD', culture)
+
+};
+
+const currentDate = moment().format('D MMM YYYY');
+
 export default class Base extends Component {
 
   constructor() {
@@ -75,6 +95,19 @@ export default class Base extends Component {
           onView={this.changeView}
           view={view}
           defaultDate={date}
+          messages={{
+            allDay: 'Todo el dia',
+            previous: 'Anterior',
+            next: "Siguiente",
+            today: 'Hoy',
+            month: 'Mes',
+            week: 'Semana',
+            day: 'Día',
+            agenda: 'Agenda',
+          }}
+          min={new Date(`${currentDate}, 08:30`)}
+          max={new Date(`${currentDate}, 20:30`)}
+          formats={formats}
         />
       </div>
     )
