@@ -1,7 +1,13 @@
-import { h, render, Component } from 'preact';
+import React, { Component } from 'react';
+import cx from 'classnames';
+import BigCalendar from './Components/BigCalendar';
+import moment from 'moment';
+import events from './events';
 
 import s from './base.css';
 const data = require('../data/data.json');
+
+BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
 
 export default class Base extends Component {
 
@@ -9,8 +15,12 @@ export default class Base extends Component {
     super();
 
     this.state = {
-      data: []
-    }
+      data: [],
+      view: 'week',
+      date: new Date()
+    };
+
+    this.changeView = this.changeView.bind(this);
   }
 
   componentWillMount() {
@@ -31,7 +41,7 @@ export default class Base extends Component {
     }
 
     if (!dataExists) {
-      this.setState({data: data});
+      this.setState({ data: data });
     } else {
       if (interactiveData.dataUri) {
         dataUri = interactiveData.dataUri;
@@ -44,17 +54,28 @@ export default class Base extends Component {
     fetch(uri)
       .then((response) => {
         return response.json()
-    }).then((json) => {
+      }).then((json) => {
       this.setState({ data: json });
     }).catch((ex) => {
       console.log('parsing failed', ex)
     })
   }
 
-  render(props, state) {
-    return(
+  changeView(type) {
+    this.setState({ view: type });
+  }
+
+  render() {
+    const { view, date } = this.state;
+    return (
       <div className={s.container}>
-        Hello calendario_de_eventos!
+        <BigCalendar
+          culture="es"
+          events={events}
+          onView={this.changeView}
+          view={view}
+          defaultDate={date}
+        />
       </div>
     )
   }

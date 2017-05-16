@@ -1,6 +1,8 @@
+@import "_variables.css";
+
 .container {
   font-family: map(fonts, family-sans);
   font-size: 16px;
-  background-color: map(colors, primary, base);
-  display: block;
+  display: flex;
+  height: 30em;
 }

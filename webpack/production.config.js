@@ -7,12 +7,6 @@ const config = {
     // path: path.resolve(__dirname, '../dist'),
     filename: './dist/script.js'
   },
-  resolve: {
-    alias: {
-      'react': 'preact',
-      'react-dom': 'preact-compat'
-    }
-  },
   module: {
     loaders: [
       {
@@ -20,8 +14,8 @@ const config = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         options: {
-          presets: [['es2015', 'react']],
-          plugins: [["transform-react-jsx", { "pragma": "h" }]]
+          presets: [['es2015', 'react'], "stage-2"],
+          plugins: [["transform-react-jsx"]]
         }
       },
       {

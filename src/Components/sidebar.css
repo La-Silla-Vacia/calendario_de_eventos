@@ -1,0 +1,19 @@
+@import "../_variables.css";
+
+.container {
+  background-color: var(--brand-color);
+  width: 300px;
+  padding: 2em;
+}
+
+.changeViewButton {
+  background: transparent;
+  border: 0;
+  color: var(--brand-color--light);
+  font-size: .8em;
+  font-family: map(fonts, family-sans-especial);
+}
+
+.is_active {
+  color: var(--color-highlight);
+}
