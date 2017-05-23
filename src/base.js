@@ -37,7 +37,8 @@ export default class Base extends Component {
     this.state = {
       data: [],
       view: 'week',
-      date: new Date()
+      date: new Date(),
+      hidden: false
     };
 
     this.changeView = this.changeView.bind(this);
@@ -63,6 +64,12 @@ export default class Base extends Component {
     if (!dataExists) {
       this.setState({ data: data });
     } else {
+      if (interactiveData.hidden) {
+        this.setState({hidden: true});
+        interactiveData.hidden = () => {
+          this.setState({hidden: !this.state.hidden});
+        };
+      }
       if (interactiveData.dataUri) {
         dataUri = interactiveData.dataUri;
         this.fetchData(dataUri);
@@ -86,9 +93,9 @@ export default class Base extends Component {
   }
 
   render() {
-    const { view, date } = this.state;
+    const { view, date, hidden } = this.state;
     return (
-      <div className={s.container}>
+      <div className={cx(s.container, {[s.hidden]: hidden})}>
         <BigCalendar
           culture="es"
           events={events}

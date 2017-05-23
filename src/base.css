@@ -5,4 +5,11 @@
   font-size: 16px;
   display: flex;
   height: 30em;
+  background-color: #fff;
+  overflow: hidden;
+  transition: height .4s;
+}
+
+.hidden {
+  height: 0;
 }
